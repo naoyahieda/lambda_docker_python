@@ -8,3 +8,5 @@
 
 # PythonのDockerImageをLambdaにデプロイする。
 [参考](https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/python-image.html)
+
+実行している関数は[ここ](https://jp.magicode.io/Nao/articles/bc7b27340acb4960af442b7a7eb133d5)に説明あり
