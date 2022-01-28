@@ -1,18 +1,21 @@
+import json
 import sys
 
+import boto3
 import psycopg2
 
 from utils.send_push_notification import send_push
 
-# psycopg2についての参考(https://chusotsu-program.com/psycopg2-usage/)
-# DB接続情報
+# RDS用
 DB_HOST = 'localhost'
 DB_PORT = '5432'
 DB_NAME = 'postgres'
 DB_USER = 'root'
 DB_PASSWORD = 'password'
-
-""" psql -h localhost -p 5432 -U postgres """
+# s3用
+BUCKET_NAME = 'バケット名'
+OBJECT_KEY_NAME = 'ファイル名'
+s3_client = boto3.client('s3')
 
 
 def get_connection():
@@ -21,7 +24,12 @@ def get_connection():
 
 
 def handler(event, context):
-    print('debug here')
+    print('start!!')
+    # s3からファイルを取得(これは権限がいる, IAM)
+    response = s3_client.get_object(Bucket=BUCKET_NAME, Key=OBJECT_KEY_NAME)
+    body = response['Body'].read()
+    print(body)
+
     conn = get_connection()
     cur = conn.cursor()
 
@@ -32,5 +40,6 @@ def handler(event, context):
 
     cur.close()
     conn.close()
-    print(psycopg2.apilevel)
+
+    print('end!!')
     return 'Hello from AWS Lambda using Python' + sys.version + '!'
