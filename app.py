@@ -34,7 +34,7 @@ def handler(event, context):
     cur = conn.cursor()
 
     # SQL実行（tbl_sampleから全データを取得）
-    cur.execute('SELECT * FROM item')
+    cur.execute('SELECT * FROM item')  # ここでなぜかエラーがでる
     rows = cur.fetchall()
     print(rows)
 
