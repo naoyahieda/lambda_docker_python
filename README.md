@@ -1,12 +1,14 @@
-         ___        ______     ____ _                 _  ___  
-        / \ \      / / ___|   / ___| | ___  _   _  __| |/ _ \ 
-       / _ \ \ /\ / /\___ \  | |   | |/ _ \| | | |/ _` | (_) |
-      / ___ \ V  V /  ___) | | |___| | (_) | |_| | (_| |\__, |
-     /_/   \_\_/\_/  |____/   \____|_|\___/ \__,_|\__,_|  /_/ 
- ----------------------------------------------------------------- 
+# コード
 
+# ローカルでのビルドとテスト
 
-# PythonのDockerImageをLambdaにデプロイする。
-[参考](https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/python-image.html)
+docker build -t myfunction:latest .
+docker run -p 9000:8080 myfunction:latest
 
-実行している関数は[ここ](https://jp.magicode.io/Nao/articles/bc7b27340acb4960af442b7a7eb133d5)に説明あり
+で起動してからの、ターミナルで curl するとローカルでテストできる(=Lambda の発火と同義)
+
+curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
+
+# 参考:
+
+https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/images-test.html
