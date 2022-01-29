@@ -25,7 +25,7 @@ def get_connection():
 
 def handler(event, context):
     print('start!!')
-    # s3からファイルを取得(これは権限がいる, IAM)
+    # s3からファイルを取得(これはLambdaに権限がいる, IAM)
     response = s3_client.get_object(Bucket=BUCKET_NAME, Key=OBJECT_KEY_NAME)
     body = response['Body'].read()
     print(body)
