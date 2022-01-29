@@ -30,6 +30,7 @@ def handler(event, context):
     body = response['Body'].read()
     print(body)
 
+    # rdsと接続しSQL実行
     conn = get_connection()
     cur = conn.cursor()
 
