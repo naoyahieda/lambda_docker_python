@@ -3,6 +3,7 @@
 # ローカルでのビルドとテスト
 
 docker build -t myfunction:latest .
+
 docker run -p 9000:8080 myfunction:latest
 
 で起動してからの、ターミナルで curl するとローカルでテストできる(=Lambda の発火と同義)
